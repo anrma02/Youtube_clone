@@ -1,11 +1,34 @@
 'use client';
 
+import { useContext, useState } from 'react';
+
 import { SignInButton } from './SignInButton';
+import { CurrentUserContext } from '~/context/CurrentUserContext';
+import { IconButton } from '../Header/Header';
+import { MdOutlineVideoCall } from 'react-icons/md';
+import { Avatar, AvatarSize } from '~/components/Avatar';
+import UserMenu from './UserMenu';
 
 export const UseOptions = () => {
-     return (
+     const currentUser = useContext(CurrentUserContext);
+
+     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+     return currentUser ? (
           <>
-               <SignInButton />
+               <div className="flex items-center gap-4 mr-4">
+                    <IconButton>
+                         <MdOutlineVideoCall className={'h-7 w-7'} />
+                    </IconButton>
+                    <Avatar
+                         size={AvatarSize.small}
+                         imageSrc={currentUser.image}
+                         onClick={() => setIsMenuOpen(true)}
+                    />
+               </div>
+               {isMenuOpen ? <UserMenu onClose={() => setIsMenuOpen(false)} /> : null}
           </>
+     ) : (
+          <SignInButton />
      );
 };

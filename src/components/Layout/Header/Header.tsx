@@ -11,7 +11,7 @@ interface IconButtonProps {
      onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const IconButton: React.FC<React.PropsWithChildren<IconButtonProps>> = ({
+export const IconButton: React.FC<React.PropsWithChildren<IconButtonProps>> = ({
      children,
      className,
      onClick,
