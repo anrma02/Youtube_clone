@@ -30,7 +30,7 @@ export const Avatar: React.FC<AvatarProps> = ({
                height={size}
                width={size}
                onClick={onClick}
-               src={imageSrc || '/images/avatar.png'}
+               src={imageSrc || '/image/avatar.png'}
           />
      );
 };
