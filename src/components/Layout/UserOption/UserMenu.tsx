@@ -6,6 +6,8 @@ import MenuItem from './MenuItem';
 import { signOut } from 'next-auth/react';
 import { useContext } from 'react';
 import { CreateChannelModelContext } from '~/context/CreateChannelModelContext';
+import { CurrentChannelContext } from '~/context/CurrentChannelContext';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
      onClose: () => void;
@@ -13,6 +15,9 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ onClose }) => {
      const createChannelModal = useContext(CreateChannelModelContext);
+     const currentChannel = useContext(CurrentChannelContext);
+
+     const router = useRouter();
 
      return (
           <>
@@ -22,7 +27,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ onClose }) => {
                          logo={<PiUserSquareFill className={'h-7 w-7 mr-4'} />}
                          label="Your Channel"
                          onClick={() => {
-                              createChannelModal?.onOpen();
+                              if (!currentChannel) {
+                                   createChannelModal?.onOpen();
+                              } else {
+                                   router.push(`/channel/${currentChannel.id}`);
+                              }
                               onClose();
                          }}
                     />
@@ -30,7 +39,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ onClose }) => {
                          logo={<PiYoutubeLogo className={'h-7 w-7 mr-4'} />}
                          label="Youtube Studio"
                          onClick={() => {
-                              createChannelModal?.onOpen();
+                              if (!currentChannel) {
+                                   createChannelModal?.onOpen();
+                              } else {
+                                   router.push(`/studio`);
+                              }
                               onClose();
                          }}
                     />

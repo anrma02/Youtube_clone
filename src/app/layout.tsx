@@ -9,6 +9,8 @@ import { CurrentUserProvider } from '~/context/CurrentUserContext';
 import getCurrentUser from '~/actions/getCurrentUser';
 import CreateChannelModelProvider from '~/context/CreateChannelModelContext';
 import CreateChannelModal from '../components/Layout/Modal/CreateChannelModal';
+import getCurrentChannel from '~/actions/getCurrentChannel';
+import { CurrentChannelProvider } from '~/context/CurrentChannelContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
      const currentUser = await getCurrentUser();
+     const currentChannel = await getCurrentChannel();
 
      return (
           <html lang="en">
@@ -27,8 +30,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                          <Toaster toastOptions={{ position: 'top-right' }} />
                          <CreateChannelModal />
                          <CurrentUserProvider user={currentUser}>
-                              <Header />
-                              <div className="pt-16"> {children}</div>
+                              <CurrentChannelProvider channel={currentChannel}>
+                                   <Header />
+                                   <div className="pt-16"> {children}</div>
+                              </CurrentChannelProvider>
                          </CurrentUserProvider>
                     </CreateChannelModelProvider>
                </body>
