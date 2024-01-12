@@ -11,6 +11,7 @@ import CreateChannelModelProvider from '~/context/CreateChannelModelContext';
 import CreateChannelModal from '../components/Layout/Modal/CreateChannelModal';
 import getCurrentChannel from '~/actions/getCurrentChannel';
 import { CurrentChannelProvider } from '~/context/CurrentChannelContext';
+import UploadVideoModelProvider from '~/context/UploadVideoModalContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,8 +32,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                          <CreateChannelModal />
                          <CurrentUserProvider user={currentUser}>
                               <CurrentChannelProvider channel={currentChannel}>
-                                   <Header />
-                                   <div className="pt-16"> {children}</div>
+                                   <UploadVideoModelProvider>
+                                        <Header />
+                                        <div className="pt-16"> {children}</div>
+                                   </UploadVideoModelProvider>
                               </CurrentChannelProvider>
                          </CurrentUserProvider>
                     </CreateChannelModelProvider>
