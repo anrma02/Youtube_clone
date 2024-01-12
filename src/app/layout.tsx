@@ -1,13 +1,14 @@
 /* eslint-disable react/no-children-prop */
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Toast, Toaster } from 'react-hot-toast';
 
 import './style.css';
 import { Header } from '~/components/Layout/Header/Header';
 import { CurrentUserProvider } from '~/context/CurrentUserContext';
 import getCurrentUser from '~/actions/getCurrentUser';
 import CreateChannelModelProvider from '~/context/CreateChannelModelContext';
-import CreateChannelModal from './components/Modal/CreateChannelModal';
+import CreateChannelModal from '../components/Layout/Modal/CreateChannelModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <html lang="en">
                <body className={inter.className}>
                     <CreateChannelModelProvider>
+                         <Toaster toastOptions={{ position: 'top-right' }} />
                          <CreateChannelModal />
                          <CurrentUserProvider user={currentUser}>
                               <Header />
