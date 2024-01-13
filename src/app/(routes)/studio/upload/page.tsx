@@ -6,13 +6,18 @@ import { useContext, useEffect, useMemo, useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import Button from '~/components/Button';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import UploadVideoModal from '~/components/Layout/Modal/UploadVideoModal';
 import VideoPreview from '~/components/studio/upload/VideoPreview';
 import VideoUploadForm from '~/components/studio/upload/VideoUploadForm';
 import { UploadVideoModelContext } from '~/context/UploadVideoModalContext';
+import { useProtectedRouter } from '~/hooks/useProtectedRouter';
 
 function UploadPage() {
+     useProtectedRouter();
+
      const uploadVideoModal = useContext(UploadVideoModelContext);
      const [isLoading, setIsLoading] = useState(false);
      const router = useRouter();
@@ -52,7 +57,17 @@ function UploadPage() {
           });
      };
 
-     const onSubmit: SubmitHandler<FieldValues> = (data) => {};
+     const onSubmit: SubmitHandler<FieldValues> = (data) => {
+          setIsLoading(true);
+
+          axios.post('/api/videos', data)
+               .then(() => {
+                    toast.success('Video published successfully');
+                    router.push('/studio');
+               })
+               .catch(() => toast.error('Could not publish video'))
+               .finally(() => setIsLoading(false));
+     };
 
      return (
           <>
