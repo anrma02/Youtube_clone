@@ -1,5 +1,6 @@
 import { getChannelById } from '~/actions/getChannelById';
 import { getVideosChannelById } from '~/actions/getVideoByChannelId';
+import VideoCard from '~/components/VideoCard';
 import ChannelHeader from '~/components/channel/ChannelHeader';
 
 interface ChannelPageParams {
@@ -20,7 +21,9 @@ export default async function ChannelPage({ params }: { params: ChannelPageParam
                          Videos
                     </div>
                     <div className=" mx-auto sm:mx-24 py-8 grid grid-cols-1 sm:grid-clos-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
-                         ss
+                         {videos.map((items) => (
+                              <VideoCard key={items.id} video={items} />
+                         ))}
                     </div>
                </div>
           </div>
