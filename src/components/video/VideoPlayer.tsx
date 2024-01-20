@@ -146,7 +146,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc }) => {
      }, [handleKeyPress]);
 
      return (
-          <div className="relative w-full max-w-[1000px] flex justify-center m-auto  group bg-black ">
+          <div className="relative w-full max-w-[1000px] flex justify-center ml-[50px]  group bg-black ">
                <div className="absolute   bottom-0 left-0 right-0 text-white bg-gradient-to-t from-black/40 z-10 opacity-0 transition-opacity group-hover:opacity-100 cursor-pointer">
                     <div className="cursor-pointer flex items-center mx-2 h-2 group/timeline">
                          <div

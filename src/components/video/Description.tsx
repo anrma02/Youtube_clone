@@ -15,7 +15,7 @@ const Description: React.FC<DescriptionProps> = ({ video }) => {
 
      return (
           <div
-               className={`bg-neutral-800 rounded-xl p-3 overflow-hidden ${
+               className={`ml-[50px] bg-neutral-800 rounded-xl max-w-[1000px] p-3 overflow-hidden ${
                     isExpanded ? 'h-fit' : 'line-clamp-2 max-h-28'
                }`}
           >
