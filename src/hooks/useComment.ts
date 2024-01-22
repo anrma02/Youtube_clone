@@ -44,7 +44,7 @@ export const useComment = ({ videoId }: UseCommentProps) => {
                if (text.trim()) {
                     await axios.post(`/api/comments/${videoId}`, data).then(() => setText(''));
                }
-
+               alert('Comment added successfully!');
                router.refresh();
                toast.success('Comment added successfully!');
           } catch (error) {

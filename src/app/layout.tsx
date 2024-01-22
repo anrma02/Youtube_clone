@@ -12,6 +12,9 @@ import CreateChannelModal from '../components/Layout/Modal/CreateChannelModal';
 import getCurrentChannel from '~/actions/getCurrentChannel';
 import { CurrentChannelProvider } from '~/context/CurrentChannelContext';
 import UploadVideoModelProvider from '~/context/UploadVideoModalContext';
+import getCurrentSubscriptions from '~/actions/getCurrentSubscriptions';
+import SidebarProvider from '~/context/SidebaContext';
+import Navigation from '~/components/Layout/Header/Navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,8 +36,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                          <CurrentUserProvider user={currentUser}>
                               <CurrentChannelProvider channel={currentChannel}>
                                    <UploadVideoModelProvider>
-                                        <Header />
-                                        <div className="pt-16"> {children}</div>
+                                        <SidebarProvider>
+                                             <Navigation />
+
+                                             <div className="pt-16  ">
+                                                  {/* <Sidebar subscribedChannels={subscriptions} /> */}
+                                                  <>{children}</>
+                                             </div>
+                                        </SidebarProvider>
                                    </UploadVideoModelProvider>
                               </CurrentChannelProvider>
                          </CurrentUserProvider>

@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
-import { Navbar } from '../Navbar/Navbar';
+import React, { useContext } from 'react';
+
 import { Logo } from '~/components/Logo';
 import { SearchValue } from '../SearchValue/SearchValue';
 import { UseOptions } from '../UserOption/UserOptions';
+import { MdMenu } from 'react-icons/md';
+import NavigationHeader from './NavigationHeader';
 
 interface IconButtonProps {
      className?: string;
@@ -29,12 +31,7 @@ export const IconButton: React.FC<React.PropsWithChildren<IconButtonProps>> = ({
 export const Header = () => {
      return (
           <div className="fixed w-full bg-stone-900 z-20 h-16 px-2 flex flex-row justify-between items-center ">
-               <div className="flex items-center">
-                    <IconButton>
-                         <Navbar />
-                    </IconButton>
-                    <Logo />
-               </div>
+               <NavigationHeader />
                <SearchValue />
                <UseOptions />
           </div>
