@@ -1,14 +1,31 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import queryString from 'query-string';
 import { useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 
 export const SearchValue = () => {
      const [searchValue, setSearchValue] = useState<string>('');
 
+     const router = useRouter();
+
      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
+
           console.log(searchValue);
+
+          const query = {
+               searchQuery: searchValue,
+          };
+          const url = queryString.stringifyUrl(
+               {
+                    url: '/search',
+                    query,
+               },
+               { skipNull: true },
+          );
+          router.push(url);
      };
 
      return (

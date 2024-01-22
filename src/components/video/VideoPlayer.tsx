@@ -103,8 +103,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc }) => {
           [timestampFormatter],
      );
 
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-     const totalDuration = useMemo(() => formatTimestamp(videoRef.current?.duration || 0), []);
+     const totalDuration = useMemo(
+          () => formatTimestamp(videoRef.current?.duration || 0),
+          [formatTimestamp],
+     );
 
      const uploadTimeStamp = () => {
           setCurrentDuration(formatTimestamp(videoRef.current?.currentTime || 0));

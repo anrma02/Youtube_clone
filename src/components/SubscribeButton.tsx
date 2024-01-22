@@ -12,7 +12,7 @@ const SubscribeButton: React.FC<SubscribeButtonProps> = ({ channelId }) => {
 
      return (
           <Button type={hasSubscribed ? 'rounded-dark' : 'rounded'} onClick={toggleSubscribed}>
-               {hasSubscribed ? 'Subscribed' : 'Subscribe'}
+               {hasSubscribed ? 'Subscribed ✔️' : 'Subscribe'}
           </Button>
      );
 };

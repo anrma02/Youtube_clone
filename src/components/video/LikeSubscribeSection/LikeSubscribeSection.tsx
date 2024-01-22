@@ -28,9 +28,9 @@ const LikeSubscribeSection: React.FC<LikeSubscribeSectionProps> = ({ video, chan
 
                     <div className="flex flex-col justify-between mr-2">
                          <Link href={`/channel/${channel.id}`}>
-                              <h2 className="text-lg">{channel.name}</h2>
+                              <h2 className="text-lg font-semibold">{channel.name}</h2>
                          </Link>
-                         <p className="text-sm text-neutral-400">
+                         <p className="text-sm text-neutral-400 ">
                               {comPactNumberFormat(channel.subscriberCount)} subscribers
                          </p>
                     </div>
